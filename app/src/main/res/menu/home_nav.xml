@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/sy"
+        android:title="首页"
+        android:icon="@mipmap/sy"/>
+    <item android:id="@+id/hd"
+        android:title="活动"
+        android:icon="@mipmap/hd"/>
+    <item android:id="@+id/mzyy"
+        android:title="门诊预约"
+        android:icon="@mipmap/mzyy"/>
+    <item android:id="@+id/zhyl"
+        android:title="智慧养老"
+        android:icon="@mipmap/zhyl"/>
+    <item android:id="@+id/grzx"
+        android:title="个人中心"
+        android:icon="@mipmap/grzx"/>
+</menu>
