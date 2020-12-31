@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:orientation="vertical"
+    android:background="#09151F">
+
+    <EditText
+        android:id="@+id/seek"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/sousuo_bg"
+        android:textSize="22sp"
+        android:textColor="#FFFF"
+        android:hint="搜索"
+        android:drawableLeft="@mipmap/sousuo"
+        android:paddingLeft="10dp"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
+
+</RelativeLayout>

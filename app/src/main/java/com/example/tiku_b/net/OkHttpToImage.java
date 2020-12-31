@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,6 +35,7 @@ public class OkHttpToImage extends Thread {
 
     public OkHttpToImage setUrl(String url) {
         Url = url;
+        Log.d("url" , "-------------"+url);
         return this;
     }
 
@@ -47,7 +50,9 @@ public class OkHttpToImage extends Thread {
         if (Url == null){
             return;
         }
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(50000, TimeUnit.MILLISECONDS)
+                .readTimeout(50000, TimeUnit.MILLISECONDS)
+                .build();;
         Request request = new Request.Builder()
                 .url(Url)
                 .build();

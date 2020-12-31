@@ -64,6 +64,6 @@ public class WLSZDialog extends DialogFragment implements View.OnClickListener {
         }
 
 
-        
+
     }
 }

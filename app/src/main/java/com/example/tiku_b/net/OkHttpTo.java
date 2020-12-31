@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -88,7 +89,9 @@ public class OkHttpTo extends Thread{
     public void run() {
         super.run();
         do {
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(50000, TimeUnit.MILLISECONDS)
+                    .readTimeout(50000, TimeUnit.MILLISECONDS)
+                    .build();;
             RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8") , jsonObject.toString());
             Request request = new Request.Builder()
                     .url(Url)
