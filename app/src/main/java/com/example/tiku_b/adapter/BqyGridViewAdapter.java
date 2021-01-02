@@ -2,6 +2,7 @@ package com.example.tiku_b.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -36,6 +37,12 @@ public class BqyGridViewAdapter extends ArrayAdapter<BQY> {
 
         holder.textView.setText(getItem(position).getNewstype());
 
+        if (getItem(position).isPitchOn()){
+            holder.textView.setBackgroundResource(R.drawable.bqy_bg);
+        }else {
+            holder.textView.setBackgroundColor(Color.parseColor("#FDFDFE"));
+        }
+
         return convertView;
     }
 
@@ -47,6 +54,8 @@ public class BqyGridViewAdapter extends ArrayAdapter<BQY> {
             textView = view.findViewById(android.R.id.text1);
             textView.setTextSize(16);
             textView.setTextColor(Color.parseColor("#333333"));
+            textView.setGravity(Gravity.CENTER);
+            textView.setPadding(0 , 0 , 0 , 10);
         }
     }
 }

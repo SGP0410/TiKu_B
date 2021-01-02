@@ -89,9 +89,11 @@ public class OkHttpTo extends Thread{
     public void run() {
         super.run();
         do {
-            OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(50000, TimeUnit.MILLISECONDS)
-                    .readTimeout(50000, TimeUnit.MILLISECONDS)
-                    .build();;
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                    .connectTimeout(100000, TimeUnit.SECONDS)
+                    .readTimeout(100000, TimeUnit.SECONDS)
+                    .writeTimeout(100000, TimeUnit.SECONDS)
+                    .build();
             RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8") , jsonObject.toString());
             Request request = new Request.Builder()
                     .url(Url)

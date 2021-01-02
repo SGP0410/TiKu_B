@@ -50,8 +50,10 @@ public class OkHttpToImage extends Thread {
         if (Url == null){
             return;
         }
-        OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(50000, TimeUnit.MILLISECONDS)
-                .readTimeout(50000, TimeUnit.MILLISECONDS)
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(100000, TimeUnit.SECONDS)
+                .readTimeout(100000, TimeUnit.SECONDS)
+                .writeTimeout(100000, TimeUnit.SECONDS)
                 .build();;
         Request request = new Request.Builder()
                 .url(Url)

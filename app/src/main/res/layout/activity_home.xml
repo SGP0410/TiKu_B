@@ -19,6 +19,6 @@
         android:layout_height="60dp"
         android:background="#fff"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/home_nav" />
+        app:menu="@menu/home_nav"/>
 
 </LinearLayout>

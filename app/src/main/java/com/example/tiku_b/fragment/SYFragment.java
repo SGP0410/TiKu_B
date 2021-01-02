@@ -19,12 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.tiku_b.R;
 import com.example.tiku_b.activity.GDFWActivity;
 import com.example.tiku_b.adapter.BqyGridViewAdapter;
 import com.example.tiku_b.adapter.RmztGridViewAdapter;
+import com.example.tiku_b.adapter.XwlbListViewAdapter;
 import com.example.tiku_b.adapter.YyfwGridViewAdapter;
+import com.example.tiku_b.bean.AllNews;
 import com.example.tiku_b.bean.BQY;
 import com.example.tiku_b.bean.LBT;
 import com.example.tiku_b.bean.Service;
@@ -35,13 +36,10 @@ import com.example.tiku_b.utili.MyListView;
 import com.example.tiku_b.utili.NetImage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -86,6 +84,12 @@ public class SYFragment extends Fragment {
      */
     private List<BQY> newType;
     private BqyGridViewAdapter bqyGridViewAdapter;
+
+    /**
+     * @ 新闻专栏
+     */
+    private List<AllNews> allNews;
+    private Map<String , List<AllNews>> newsMap;
 
 
     @Nullable
@@ -442,9 +446,16 @@ public class SYFragment extends Fragment {
         bqyGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < newType.size(); i++) {
+                    if (i == position){
+                        newType.get(i).setPitchOn(true);
+                        showXwlbListView(newType.get(i).getNewstype().trim());
+                    }else {
+                        newType.get(i).setPitchOn(false);
+                    }
+                }
                 bqyGridViewAdapter.notifyDataSetChanged();
             }
-            
         });
     }
 
@@ -452,6 +463,48 @@ public class SYFragment extends Fragment {
      * @effect  新闻专栏
      */
     private void setXwlbListView(){
+        getNEWsList();
+    }
+
+    /**
+     * @effect 获取全部新闻
+     */
+    private void getNEWsList() {
+        new OkHttpTo().setUrl("getNEWsList")
+                .setOkHttpLo(new OkHttpLo() {
+                    @Override
+                    public void onResponse(Call call, JSONObject jsonObject) {
+                        allNews = new Gson().fromJson(jsonObject.optJSONArray("ROWS_DETAIL").toString() ,
+                                new TypeToken<List<AllNews>>(){}.getType());
+                        newsClassify();
+                    }
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+                }).start();
+    }
+
+    /**
+     * @effect 新闻分类
+     */
+    private void newsClassify() {
+        newsMap = new HashMap<>();
+        for (AllNews news: allNews) {
+            List<AllNews> allNews1 = newsMap.get(news.getNewsType());
+            if (allNews1 == null){
+                allNews1 = new ArrayList<>();
+                newsMap.put(news.getNewsType() , allNews1);
+            }
+            allNews1.add(news);
+        }
+        showXwlbListView(newType.get(0).getNewstype());
+    }
+
+    private void showXwlbListView(String type) {
+        xwlbListView.setAdapter(new XwlbListViewAdapter(getContext() ,
+                newsMap.get(type.trim())));
 
     }
 

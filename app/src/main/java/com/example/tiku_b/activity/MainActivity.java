@@ -30,11 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        if (AppClient.getSharedPreferences().getBoolean("YD" , false)){
-            startActivity(new Intent(this , HomeActivity.class));
-        }else {
-            showViewPager();
-        }
+//        if (AppClient.getSharedPreferences().getBoolean("YD" , false)){
+//            startActivity(new Intent(this , HomeActivity.class));
+//        }else {
+//            showViewPager();
+//        }
+        showViewPager();
     }
     //为ViewPager添加fragment，并显示
     private void showViewPager() {

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFDFE">
+    android:background="#EEE">
 
     <include layout="@layout/seek_head_layout"/>
 
@@ -20,39 +20,46 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"/>
+                android:layout_height="210dp"/>
 
             <com.example.tiku_b.utili.MyGridView
                 android:id="@+id/yyfw_grid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="5"
-                android:verticalSpacing="20dp"
-                android:paddingTop="20dp"/>
+                android:verticalSpacing="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@drawable/bai_bg"/>
 
             <com.example.tiku_b.utili.MyGridView
                 android:id="@+id/rmzt_grid_view"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:numColumns="2"
-                android:layout_marginTop="20dp"
-                android:verticalSpacing="20dp"/>
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:verticalSpacing="10dp"
+                android:background="@drawable/bai_bg"/>
 
             <com.example.tiku_b.utili.MyGridView
                 android:id="@+id/bqy_grid_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="7"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginTop="5dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/bai_bg"/>
 
             <com.example.tiku_b.utili.MyListView
                 android:id="@+id/xwlb_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
-
-
+                android:padding="15dp"
+                android:background="@drawable/bai_bg"
+                android:layout_marginTop="5dp"/>
         </LinearLayout>
 
     </ScrollView>
